@@ -26,5 +26,11 @@ module FakeResque
     def queues
       []
     end
+
+    class Job
+      def self.create(queue, klass, *args)
+        Resque.enqueue(klass, *args)
+      end
+    end
   end
 end
